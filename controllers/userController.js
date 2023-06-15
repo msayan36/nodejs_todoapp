@@ -16,7 +16,7 @@ export const getAllUsers = asyncHandler(async (req, res) => {
 });
 
 // Create a User
-export const createUser = asyncHandler(async (req, res) => {
+export const createUser = asyncHandler(async (req, res, next) => {
   const { name, email, password } = req.body;
 
   let user = await User.findOne({ email });
@@ -39,7 +39,7 @@ export const createUser = asyncHandler(async (req, res) => {
 });
 
 // Login a User
-export const loginUser = asyncHandler(async (req, res) => {
+export const loginUser = asyncHandler(async (req, res, next) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({ email }).select("+password");
